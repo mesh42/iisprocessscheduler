@@ -62,6 +62,10 @@ namespace IISProcessScheduler
                                                          response.StatusCode.ToString(), response.StatusDescription
                                                      }
                                        ));
+                if (LogItems.Count > 25)
+                {
+                    LogItems.RemoveAt(25);
+                }
             }
             catch (Exception ex)
             {
