@@ -51,6 +51,9 @@ namespace IISProcessScheduler
             {
                 var request = (HttpWebRequest) WebRequest.Create(touchUrl.Url);
                 request.Timeout = touchUrl.TimeOut;
+
+                System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                watch.Start();
                 var response = (HttpWebResponse) request.GetResponse();
                 var reader = new StreamReader(response.GetResponseStream());
                 string str = reader.ReadLine();
@@ -59,12 +62,15 @@ namespace IISProcessScheduler
                     //Console.WriteLine(str);
                     str = reader.ReadLine();
                 }
-                LogItems.Insert(0, string.Format("{0} - HTTP GET {1} : {2} - {3} ",
+                 
+                watch.Stop();
+                LogItems.Insert(0, string.Format("{0} - HTTP GET {1} : {2} - {3} (processed in {4}ms)",
                                                  new[]
                                                      {
                                                          DateTime.Now.ToString(),
                                                          touchUrl.Url,
-                                                         response.StatusCode.ToString(), response.StatusDescription
+                                                         response.StatusCode.ToString(), response.StatusDescription,
+                                                         watch.ElapsedMilliseconds.ToString()
                                                      }
                                        ));
                 if (LogItems.Count > _iisProcessBehavior.LogDisplayHistory)
