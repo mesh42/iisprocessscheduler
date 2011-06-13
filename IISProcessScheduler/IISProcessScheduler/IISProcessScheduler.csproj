@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CallTest.aspx" />
+    <Content Include="CallTest2.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -72,6 +73,17 @@
     <Compile Include="CallTest.aspx.designer.cs">
       <DependentUpon>CallTest.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CallTest2.aspx.cs">
+      <DependentUpon>CallTest2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CallTest2.aspx.designer.cs">
+      <DependentUpon>CallTest2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\IISProcessBehavior.cs" />
+    <Compile Include="Configuration\TouchUrl.cs" />
+    <Compile Include="Configuration\XmlSerialization.cs" />
+    <Compile Include="Configuration\XmlSerializationSectionHandler.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
