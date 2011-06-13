@@ -7,20 +7,20 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" EnableViewState="false">
     <div>
     
-        <asp:Label ID="lblWarmupState" runat="server" Text="lblWarmupState"></asp:Label>
+        <asp:Label ID="lblWarmupState" runat="server" Text="lblWarmupState" EnableViewState="false"></asp:Label>
         <br />
         <br />
         <asp:LinkButton ID="lnkPauseResume" runat="server" 
-            onclick="lnkPauseResume_Click">lnkPauseResume</asp:LinkButton>
+            onclick="lnkPauseResume_Click" EnableViewState="false">lnkPauseResume</asp:LinkButton>
         <br />
         <br />
         <br />
-        <asp:Label ID="lblHistory" runat="server" Text="lblHistory"></asp:Label>
+        <asp:Label ID="lblHistory" runat="server" Text="lblHistory" EnableViewState="false"></asp:Label>
         <br />
-        <asp:LinkButton ID="lblRefresh" runat="server">Refresh</asp:LinkButton>
+        <asp:LinkButton ID="lblRefresh" runat="server" EnableViewState="false">Refresh</asp:LinkButton>
     
     </div>
     </form>
