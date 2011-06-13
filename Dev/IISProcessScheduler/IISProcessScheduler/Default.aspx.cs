@@ -22,6 +22,7 @@ namespace IISProcessScheduler
                 // Prewarmup not executed.
                 lblWarmupState.Text = "Service is not warmed up.";
                 lnkPauseResume.Text = string.Empty;
+                return;
             }
             else
             {
