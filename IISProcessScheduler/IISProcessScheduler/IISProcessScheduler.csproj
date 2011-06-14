@@ -54,8 +54,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CallTest.aspx" />
-    <Content Include="CallTest2.aspx" />
+    <Content Include="App_Themes\Default\Images\top.jpg" />
+    <Content Include="App_Themes\Default\Images\topback.jpg" />
+    <Content Include="App_Themes\Default\Style.css" />
+    <Content Include="CallTests\CallTest.aspx" />
+    <Content Include="CallTests\CallTest2.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -66,18 +69,18 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CallTest.aspx.cs">
+    <Compile Include="CallTests\CallTest.aspx.cs">
       <DependentUpon>CallTest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CallTest.aspx.designer.cs">
+    <Compile Include="CallTests\CallTest.aspx.designer.cs">
       <DependentUpon>CallTest.aspx</DependentUpon>
     </Compile>
-    <Compile Include="CallTest2.aspx.cs">
+    <Compile Include="CallTests\CallTest2.aspx.cs">
       <DependentUpon>CallTest2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CallTest2.aspx.designer.cs">
+    <Compile Include="CallTests\CallTest2.aspx.designer.cs">
       <DependentUpon>CallTest2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuration\IISProcessBehavior.cs" />
@@ -107,6 +110,22 @@
     <Compile Include="Scheduling\SchedulingTimeHelpers.cs" />
     <Compile Include="Service\BaseService.cs" />
     <Compile Include="Service\Interfaces\IService.cs" />
+    <Compile Include="Shared\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Shared\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CallTests\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Themes\Default\Default.skin" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,41 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="IISProcessScheduler.Shared.Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div id="doc2" class="yui-t7">
+        <div id="hd">
+            <img src="App_Themes/Default/Images/top.jpg" />
+            <asp:LoginView ID="LoginView1" runat="server">
+                <AnonymousTemplate>
+                    Anonymous
+                </AnonymousTemplate>
+                <LoggedInTemplate>
+                    Welcome: <asp:LoginName ID="LoginName1" runat="server" />
+                </LoggedInTemplate>
+            </asp:LoginView>
+        </div>
+        <div id="bd">
+            <div id="yui-main">
+                <div class="yui-b">
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
+            </div>
+            <div class="yui-b">
+                <!-- PUT SECONDARY COLUMN CODE HERE -->
+            </div>
+        </div>
+        <div id="ft">
+            <!-- PUT FOOTER CODE HERE -->
+        </div>
+    </div>
+    </form>
+</body>
+</html>
