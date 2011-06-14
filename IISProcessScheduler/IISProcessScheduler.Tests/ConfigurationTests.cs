@@ -13,7 +13,7 @@ namespace IISProcessScheduler.Tests
         [Test]
         public void ReadTouchUrlTest()
         {
-            var section = ConfigurationManager.GetSection("IISProcessBehavior");
+            var section = ConfigurationManager.GetSection("/IISProcessBehavior");
         }
     }
 }

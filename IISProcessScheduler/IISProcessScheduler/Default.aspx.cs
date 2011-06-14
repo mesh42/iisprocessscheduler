@@ -10,6 +10,8 @@
  *
  * **********************************************************************************/
 using System;
+using System.Threading;
+using IISProcessScheduler.Configuration.IIS;
 
 namespace IISProcessScheduler
 {
@@ -22,11 +24,13 @@ namespace IISProcessScheduler
                 // Prewarmup not executed.
                 lblWarmupState.Text = "Service is not warmed up.";
                 lnkPauseResume.Text = string.Empty;
+                lnkEnableWarmUp.Visible = true;
                 return;
             }
             else
             {
                 lblWarmupState.Text = string.Format("Service started at {0}",PreWarmUp.Started);
+                lnkEnableWarmUp.Visible = false;
                 SetLnkText();
             }
             lblHistory.Text = string.Empty;
@@ -52,6 +56,21 @@ namespace IISProcessScheduler
                 PreWarmUp.SchedulingService.Pause();
             }
             SetLnkText();
+        }
+
+        protected void lnkEnableWarmUp_Click(object sender, EventArgs e)
+        {
+            System.Security.Principal.WindowsImpersonationContext impersonationContext;
+            impersonationContext =
+                ((System.Security.Principal.WindowsIdentity)User.Identity).Impersonate();
+
+            IISHelpers.SetAutoStartProvider();
+            IISHelpers.SetAutoStart(Request.ApplicationPath, true);
+
+            impersonationContext.Undo();
+
+            Thread.Sleep(1000); // allow IIS to warmup.
+            Response.Redirect("./");
         }
     }
 }

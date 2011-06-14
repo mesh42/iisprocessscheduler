@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using IISProcessScheduler.Configuration.IIS;
 using Microsoft.Web.Administration;
 using NUnit.Framework;
 using Site = System.Security.Policy.Site;
@@ -8,6 +9,15 @@ namespace IISProcessScheduler.Tests
     [TestFixture]
     public class IISSetupTests
     {
+        [Test]
+        public void GetSiteTest()
+        {
+            IISHelpers.SetAutoStartProvider();
+            IISHelpers.SetAutoStart("/IISProcessScheduler",true);
+        }
+
+
+
         [Test]
         public void GetConfigurrationAttribute()
         {

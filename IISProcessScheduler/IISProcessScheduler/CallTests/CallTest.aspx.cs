@@ -11,7 +11,7 @@ namespace IISProcessScheduler
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            throw new Exception("");
         }
     }
 }
