@@ -37,6 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Web.Administration, Version=7.9.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Microsoft.Web.Administration.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -84,6 +88,7 @@
       <DependentUpon>CallTest2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Configuration\IISProcessBehavior.cs" />
+    <Compile Include="Configuration\IIS\IISHelpers.cs" />
     <Compile Include="Configuration\TouchUrl.cs" />
     <Compile Include="Configuration\XmlSerialization.cs" />
     <Compile Include="Configuration\XmlSerializationSectionHandler.cs" />

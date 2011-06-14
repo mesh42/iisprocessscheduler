@@ -5,6 +5,8 @@
     <div>
     
         <asp:Label ID="lblWarmupState" runat="server" Text="lblWarmupState" EnableViewState="false"></asp:Label>
+        &nbsp;<asp:LinkButton ID="lnkEnableWarmUp" runat="server" Visible="False" 
+            EnableViewState="false" onclick="lnkEnableWarmUp_Click">Click here to enable PreWarmUp IIS Settings.</asp:LinkButton>
         <br />
         <br />
         <asp:LinkButton ID="lnkPauseResume" runat="server" 

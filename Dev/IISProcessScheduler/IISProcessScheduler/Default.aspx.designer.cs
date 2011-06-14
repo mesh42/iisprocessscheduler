@@ -22,6 +22,15 @@ namespace IISProcessScheduler {
         protected global::System.Web.UI.WebControls.Label lblWarmupState;
         
         /// <summary>
+        /// lnkEnableWarmUp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkEnableWarmUp;
+        
+        /// <summary>
         /// lnkPauseResume control.
         /// </summary>
         /// <remarks>
