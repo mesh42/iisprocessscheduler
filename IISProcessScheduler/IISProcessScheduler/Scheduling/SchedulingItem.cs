@@ -9,6 +9,7 @@
  * You must not remove this notice, or any other, from this software.
  *
  * **********************************************************************************/
+using System.Xml.Serialization;
 using IISProcessScheduler.Scheduling.Enumerations;
 using System;
 using IISProcessScheduler.Scheduling.Interfaces;
@@ -23,11 +24,13 @@ namespace IISProcessScheduler.Scheduling
         /// <summary>
         /// A unique identifier for the job.
         /// </summary>
+        [XmlIgnore]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets a synchronization token for the job.
         /// </summary>
+        [XmlIgnore]
         public object SynchronizationToken
         {
             get { return this; }
@@ -37,7 +40,8 @@ namespace IISProcessScheduler.Scheduling
         /// The designated start time for the job. If not set, the
         /// job starts immediately.
         /// </summary>
-        public virtual DateTimeOffset StartTime { get; set; }
+        [XmlIgnore]
+        public virtual DateTime StartTime { get; set; }
 
         private TimeSpan? interval;
 
@@ -120,6 +124,7 @@ namespace IISProcessScheduler.Scheduling
         /// <summary>
         /// The job's current state.
         /// </summary>
+        [XmlIgnore]
         public virtual SchedulingItemStateType SchedulingState { get; protected internal set; }
 
 

@@ -23,11 +23,13 @@ namespace IISProcessScheduler.Scheduling
             _schedulingItem = schedulingItem;
         }
 
-        public SchedulingApi From(DateTimeOffset startTime)
+        public SchedulingApi From(DateTime startTime)
         {
             _schedulingItem.StartTime = startTime;
             return this;
         }
+
+        public SchedulingApi(){}
 
         public SchedulingApi Once()
         {

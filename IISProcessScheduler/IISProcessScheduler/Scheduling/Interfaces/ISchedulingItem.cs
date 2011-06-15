@@ -9,6 +9,7 @@
  * You must not remove this notice, or any other, from this software.
  *
  * **********************************************************************************/
+using System.Xml.Serialization;
 using IISProcessScheduler.Scheduling.Enumerations;
 using System;
 
@@ -16,13 +17,18 @@ namespace IISProcessScheduler.Scheduling.Interfaces
 {
     public interface ISchedulingItem
     {
+        [XmlIgnore]
         string Id { get; set; }
+        [XmlIgnore]
         object SynchronizationToken { get; }
-        DateTimeOffset StartTime { get; set; }
+        DateTime StartTime { get; set; }
         TimeSpan? Interval { get; set; }
         int? Loops { get; set; }
+        [XmlIgnore]
         DateTimeOffset? ExpirationTime { get; }
+        [XmlIgnore]
         SchedulingItemStateType SchedulingState { get; }
+        [XmlIgnore]
         SchedulingApi Run { get; }
         void Cancel();
         bool Pause();

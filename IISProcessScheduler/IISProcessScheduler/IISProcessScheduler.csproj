@@ -70,6 +70,8 @@
     <Content Include="App_Themes\Default\Images\tableheader.jpg" />
     <Content Include="App_Themes\Default\Images\top.jpg" />
     <Content Include="App_Themes\Default\Images\topback.jpg" />
+    <Content Include="App_Themes\Default\Images\topbacksmall.jpg" />
+    <Content Include="App_Themes\Default\Images\topsmall.jpg" />
     <Content Include="App_Themes\Default\Style.css" />
     <Content Include="CallTests\CallTest.aspx" />
     <Content Include="CallTests\CallTest2.aspx" />
@@ -103,6 +105,7 @@
     </Compile>
     <Compile Include="Configuration\IISProcessBehavior.cs" />
     <Compile Include="Configuration\IIS\IISHelpers.cs" />
+    <Compile Include="Configuration\SerializationHelpers.cs" />
     <Compile Include="Configuration\TouchUrl.cs" />
     <Compile Include="Configuration\XmlSerialization.cs" />
     <Compile Include="Configuration\XmlSerializationSectionHandler.cs" />
@@ -124,6 +127,7 @@
     <Compile Include="Scheduling\SchedulingApi.cs" />
     <Compile Include="Scheduling\SchedulingIntervals.cs" />
     <Compile Include="Scheduling\SchedulingItem.cs" />
+    <Compile Include="Scheduling\SchedulingItembehavior.cs" />
     <Compile Include="Scheduling\SchedulingItemContext.cs" />
     <Compile Include="Scheduling\SchedulingService.cs" />
     <Compile Include="Scheduling\SchedulingTimeHelpers.cs" />

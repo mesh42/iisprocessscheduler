@@ -19,7 +19,7 @@ namespace IISProcessScheduler.Scheduling.Interfaces
         /// Sets the job's starting time.
         /// </summary>
         /// <param name="startTime">The first execution of the job.</param>
-        SchedulingApi From(DateTimeOffset startTime);
+        SchedulingApi From(DateTime startTime);
 
         /// <summary>
         /// Configures the job to run only once.
