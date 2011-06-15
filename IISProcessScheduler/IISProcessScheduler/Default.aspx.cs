@@ -10,15 +10,72 @@
  *
  * **********************************************************************************/
 using System;
+using System.Collections.Generic;
 using System.Threading;
+using System.Web;
 using IISProcessScheduler.Configuration.IIS;
 
 namespace IISProcessScheduler
 {
     public partial class Default : System.Web.UI.Page
     {
+        public enum EnumProcessResult
+        {
+            Error,
+            Timeout,
+            Healthy
+        }
+
+        public interface IProcessInfo
+        {
+            string Resource { get; set; }
+            EnumProcessResult Result { get; set; }
+            string Description { get; set; }
+            string StatusCode { get; set; }
+            double TimeElapsed { get; set; }
+            DateTime Date { get; set; }
+        }
+
+        public class TouchUrlProcessInfos : List<IProcessInfo>
+        {
+            public TouchUrlProcessInfos() : base()
+            {
+                //this.Add(new TouchUrlProcessInfo("hello world!....."));
+            }
+        }
+
+        public class TouchUrlProcessInfo : IProcessInfo
+        {
+            public string Resource { get; set; }
+            public string Description { get; set; }
+            public string StatusCode { get; set; }
+
+            public TouchUrlProcessInfo(string resource, EnumProcessResult processResult, string statusCode, double timeElapsed, string description)
+            {
+                Resource = resource;
+                Result = processResult;
+                StatusCode = statusCode;
+                TimeElapsed = timeElapsed;
+                Description = description;
+                Date = DateTime.Now;
+            }
+
+            public EnumProcessResult Result { get; set; }
+
+
+            public double TimeElapsed { get; set; }
+
+
+
+            public DateTime Date { get; set; }
+
+
+        }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblHistory.Text = string.Empty;
             if (PreWarmUp.Started == DateTime.MinValue)
             {
                 // Prewarmup not executed.
@@ -33,17 +90,27 @@ namespace IISProcessScheduler
                 lnkEnableWarmUp.Visible = false;
                 SetLnkText();
             }
-            lblHistory.Text = string.Empty;
-            foreach (string item in PreWarmUp.LogItems)
-            {
-                lblHistory.Text += item + "<br />";
-            }
+            var pi = new TouchUrlProcessInfos();
+            //foreach (string item in PreWarmUp.LogItems)
+            //{
+            //    //lblHistory.Text += item + "<br />";
+            //    pi.Add(new TouchUrlProcessInfo(item));
+            //}
+
+            dlHistory.DataSource = PreWarmUp.LogItems;
+            dlHistory.DataBind();
         }
 
         private void SetLnkText()
         {
             lnkPauseResume.Text = PreWarmUp.SchedulingService.IsPaused ? "Resume Scheduler" : "Pause Scheduler";
         }
+
+        public void ServiceStatusControl_Bind(object sender, EventArgs eventArgs)
+        {
+            
+        }
+
 
         protected void lnkPauseResume_Click(object sender, EventArgs e)
         {
