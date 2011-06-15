@@ -25,7 +25,7 @@ namespace IISProcessScheduler
     {
         public static DateTime Started { get; internal set; }
         public static SchedulingService SchedulingService{ get; internal set;}
-        public static List<string> LogItems { get; set; }
+        public static List<Default.IProcessInfo> LogItems { get; set; }
         private SchedulingItem _rssSchedulingItem;
 
         private static IISProcessBehavior _iisProcessBehavior;
@@ -33,7 +33,7 @@ namespace IISProcessScheduler
         public void Preload(string[] parameters)
         {
             _iisProcessBehavior = (IISProcessBehavior)ConfigurationManager.GetSection("IISProcessBehavior");
-            LogItems = new List<string>(25);
+            LogItems = new List<Default.IProcessInfo>();
             SchedulingService = new SchedulingService();
             SchedulingService.Start();
             foreach (var touchUrl in _iisProcessBehavior.TouchUrls)
@@ -47,14 +47,16 @@ namespace IISProcessScheduler
 
         private static void ScheduledTouchUrl(Job<TouchUrl> schedulingItem, TouchUrl touchUrl)
         {
+            HttpWebResponse response = null;
+            System.Diagnostics.Stopwatch watch = null;
+
             try
             {
-                var request = (HttpWebRequest) WebRequest.Create(touchUrl.Url);
-                request.Timeout = touchUrl.TimeOut;
-
-                System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+                watch = new System.Diagnostics.Stopwatch();
                 watch.Start();
-                var response = (HttpWebResponse) request.GetResponse();
+                var request = (HttpWebRequest)WebRequest.Create(touchUrl.Url);
+                request.Timeout = touchUrl.TimeOut;
+                response = (HttpWebResponse) request.GetResponse();
                 var reader = new StreamReader(response.GetResponseStream());
                 string str = reader.ReadLine();
                 while (str != null)
@@ -62,25 +64,89 @@ namespace IISProcessScheduler
                     //Console.WriteLine(str);
                     str = reader.ReadLine();
                 }
-                 
-                watch.Stop();
-                LogItems.Insert(0, string.Format("{0} - HTTP GET {1} : {2} - {3} (processed in {4}ms)",
-                                                 new[]
-                                                     {
-                                                         DateTime.Now.ToString(),
-                                                         touchUrl.Url,
-                                                         response.StatusCode.ToString(), response.StatusDescription,
-                                                         watch.ElapsedMilliseconds.ToString()
-                                                     }
-                                       ));
-                if (LogItems.Count > _iisProcessBehavior.LogDisplayHistory)
+                Default.EnumProcessResult result;
+                switch (response.StatusCode)
                 {
-                    LogItems.RemoveAt(_iisProcessBehavior.LogDisplayHistory);
+                    case HttpStatusCode.OK:
+                        result = Default.EnumProcessResult.Healthy;
+                        break;
+                    default:
+                        result = Default.EnumProcessResult.Error;
+                        break;
                 }
+
+                watch.Stop();
+
+                var description = string.Format("{0} - HTTP GET {1} : {2} - {3} (processed in {4}ms)",
+                                                   new[]
+                                                       {
+                                                           DateTime.Now.ToString(),
+                                                           touchUrl.Url,
+                                                           response.StatusCode.ToString(), response.StatusDescription,
+                                                           watch.ElapsedMilliseconds.ToString()
+                                                       });
+
+
+                Default.TouchUrlProcessInfo info = new Default.TouchUrlProcessInfo(touchUrl.Url,result,
+                                                                                   response.StatusCode.ToString(),
+                                                                                   watch.ElapsedMilliseconds,
+                                                                                   description);
+
+
+                lock (LogItems)
+                {
+                    LogItems.Insert(0, info);
+
+                    if (LogItems.Count > _iisProcessBehavior.LogDisplayHistory)
+                    {
+                        LogItems.RemoveAt(_iisProcessBehavior.LogDisplayHistory);
+                    }
+                }
+
             }
             catch (Exception ex)
             {
-                LogItems.Insert(0,string.Format("{0} - EXCEPTION: {1} ",DateTime.Now,ex.Message));
+                Default.EnumProcessResult result;
+                watch.Stop(); 
+                result = touchUrl.TimeOut < watch.ElapsedMilliseconds ? Default.EnumProcessResult.Timeout : Default.EnumProcessResult.Error;
+
+                
+                HttpStatusCode status;
+                string desc = ex.Message;
+
+
+                if (response == null)
+                    status = HttpStatusCode.Gone;
+
+                else
+                {
+                    status = response.StatusCode;
+                    desc = response.StatusDescription;
+                }
+
+                string description = string.Format("{0} - HTTP GET {1} : {2} - {3} (processed in {4}ms)",
+                                                   new[]
+                                                       {
+                                                           DateTime.Now.ToString(),
+                                                           touchUrl.Url,
+                                                           status.ToString(), desc,
+                                                           watch.ElapsedMilliseconds.ToString()
+                                                       });
+                var info = new Default.TouchUrlProcessInfo(touchUrl.Url, result,
+                                                                                  status.ToString(),
+                                                                                  watch.ElapsedMilliseconds,
+                                                                                  description);
+
+                lock (LogItems)
+                {
+                    LogItems.Insert(0, info);
+
+                    if (LogItems.Count > _iisProcessBehavior.LogDisplayHistory)
+                    {
+                        LogItems.RemoveAt(_iisProcessBehavior.LogDisplayHistory);
+                    }
+                }
+
             }
         }
     }

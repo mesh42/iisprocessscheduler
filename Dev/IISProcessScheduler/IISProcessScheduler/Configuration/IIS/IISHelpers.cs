@@ -1,4 +1,5 @@
-﻿using Microsoft.Web.Administration;
+﻿using System.Linq;
+using Microsoft.Web.Administration;
 
 
 namespace IISProcessScheduler.Configuration.IIS
@@ -9,11 +10,10 @@ namespace IISProcessScheduler.Configuration.IIS
         {
             var manager = new ServerManager();
             Microsoft.Web.Administration.Configuration config = manager.GetApplicationHostConfiguration();
-            ConfigurationSection configSection = config.GetSection("system.applicationHost/serviceAutoStartProviders");
-            foreach (var provider in configSection.GetCollection())
+            var configSection = config.GetSection("system.applicationHost/serviceAutoStartProviders");
+            if (configSection.GetCollection().Any(provider => provider["name"].ToString() == "IISProcessSchedulerPreWarmUp"))
             {
-                if (provider["name"].ToString() == "IISProcessSchedulerPreWarmUp")
-                    return;
+                return;
             }
             var element = configSection.GetCollection().CreateElement("add");
             element.SetAttributeValue("name", "IISProcessSchedulerPreWarmUp");
@@ -27,17 +27,14 @@ namespace IISProcessScheduler.Configuration.IIS
         {
             var manager = new ServerManager();
             Microsoft.Web.Administration.Configuration config = manager.GetApplicationHostConfiguration();
-            ConfigurationSection configSection = config.GetSection("system.applicationHost/sites");
-            foreach (var site in configSection.GetCollection())
+            var configSection = config.GetSection("system.applicationHost/sites");
+            foreach (var application in from site in configSection.GetCollection()
+                                        from application in site.GetCollection()
+                                        where application.Schema.Name == "application" && application["path"].ToString() == siteUri
+                                        select application)
             {
-                foreach (var application in site.GetCollection())
-                {
-                    if (application.Schema.Name == "application" && application["path"].ToString() == siteUri)
-                    {
-                        application.SetAttributeValue("serviceAutoStartEnabled",enabled);
-                        application.SetAttributeValue("serviceAutoStartProvider", "IISProcessSchedulerPreWarmUp");
-                    }
-                }
+                application.SetAttributeValue("serviceAutoStartEnabled",enabled);
+                application.SetAttributeValue("serviceAutoStartProvider", "IISProcessSchedulerPreWarmUp");
             }
             manager.CommitChanges();
         }
