@@ -19,7 +19,7 @@ namespace IISProcessScheduler.Shared.UserControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imagePlay;
+        protected global::System.Web.UI.WebControls.ImageButton imagePlay;
         
         /// <summary>
         /// imagePause control.
@@ -28,7 +28,7 @@ namespace IISProcessScheduler.Shared.UserControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imagePause;
+        protected global::System.Web.UI.WebControls.ImageButton imagePause;
         
         /// <summary>
         /// imageStop control.
@@ -37,6 +37,15 @@ namespace IISProcessScheduler.Shared.UserControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imageStop;
+        protected global::System.Web.UI.WebControls.ImageButton imageStop;
+        
+        /// <summary>
+        /// imageRefresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imageRefresh;
     }
 }

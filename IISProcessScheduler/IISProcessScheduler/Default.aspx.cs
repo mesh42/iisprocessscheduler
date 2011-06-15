@@ -75,69 +75,27 @@ namespace IISProcessScheduler
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblHistory.Text = string.Empty;
-            if (PreWarmUp.Started == DateTime.MinValue)
+            if (PreWarmUp.Started != DateTime.MinValue)
             {
-                // Prewarmup not executed.
-                lblWarmupState.Text = "Service is not warmed up.";
-                lnkPauseResume.Text = string.Empty;
-                lnkEnableWarmUp.Visible = true;
-                return;
+                lblWarmupState.Text = string.Format("Service started at {0}", PreWarmUp.Started);
+                dlHistory.DataSource = PreWarmUp.LogItems;
+                dlHistory.DataBind();
             }
-            else
-            {
-                lblWarmupState.Text = string.Format("Service started at {0}",PreWarmUp.Started);
-                lnkEnableWarmUp.Visible = false;
-                SetLnkText();
-            }
-            var pi = new TouchUrlProcessInfos();
-            //foreach (string item in PreWarmUp.LogItems)
-            //{
-            //    //lblHistory.Text += item + "<br />";
-            //    pi.Add(new TouchUrlProcessInfo(item));
-            //}
-
-            dlHistory.DataSource = PreWarmUp.LogItems;
-            dlHistory.DataBind();
         }
 
-        private void SetLnkText()
-        {
-            lnkPauseResume.Text = PreWarmUp.SchedulingService.IsPaused ? "Resume Scheduler" : "Pause Scheduler";
-        }
+        //protected void lnkEnableWarmUp_Click(object sender, EventArgs e)
+        //{
+        //    System.Security.Principal.WindowsImpersonationContext impersonationContext;
+        //    impersonationContext =
+        //        ((System.Security.Principal.WindowsIdentity)User.Identity).Impersonate();
 
-        public void ServiceStatusControl_Bind(object sender, EventArgs eventArgs)
-        {
-            
-        }
+        //    IISHelpers.SetAutoStartProvider();
+        //    IISHelpers.SetAutoStart(Request.ApplicationPath, true);
 
+        //    impersonationContext.Undo();
 
-        protected void lnkPauseResume_Click(object sender, EventArgs e)
-        {
-            if (PreWarmUp.SchedulingService.IsPaused)
-            {
-                PreWarmUp.SchedulingService.Resume();
-            }
-            else
-            {
-                PreWarmUp.SchedulingService.Pause();
-            }
-            SetLnkText();
-        }
-
-        protected void lnkEnableWarmUp_Click(object sender, EventArgs e)
-        {
-            System.Security.Principal.WindowsImpersonationContext impersonationContext;
-            impersonationContext =
-                ((System.Security.Principal.WindowsIdentity)User.Identity).Impersonate();
-
-            IISHelpers.SetAutoStartProvider();
-            IISHelpers.SetAutoStart(Request.ApplicationPath, true);
-
-            impersonationContext.Undo();
-
-            Thread.Sleep(1000); // allow IIS to warmup.
-            Response.Redirect("./");
-        }
+        //    Thread.Sleep(1000); // allow IIS to warmup.
+        //    Response.Redirect("./");
+        //}
     }
 }

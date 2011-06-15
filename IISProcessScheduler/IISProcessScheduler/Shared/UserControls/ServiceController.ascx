@@ -1,7 +1,5 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ServiceController.ascx.cs" Inherits="IISProcessScheduler.Shared.UserControls.ServiceController" %>
-<asp:Image ID="imagePlay" runat="server" 
-    ImageUrl="~/App_Themes/Default/Images/Icons/start32.png" />
-<asp:Image ID="imagePause" runat="server" 
-    ImageUrl="~/App_Themes/Default/Images/Icons/pause32.png" />
-<asp:Image ID="imageStop" runat="server" 
-    ImageUrl="~/App_Themes/Default/Images/Icons/stop32.png" />
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ServiceController.ascx.cs" EnableTheming="true" Inherits="IISProcessScheduler.Shared.UserControls.ServiceController" %>
+<asp:ImageButton ID="imagePlay" runat="server" onclick="imagePlay_Click" />
+<asp:ImageButton ID="imagePause" runat="server" onclick="imagePause_Click" />
+<asp:ImageButton ID="imageStop" runat="server" onclick="imageStop_Click" />
+<asp:ImageButton ID="imageRefresh" runat="server" />
