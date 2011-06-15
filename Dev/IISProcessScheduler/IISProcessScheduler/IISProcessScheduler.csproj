@@ -63,8 +63,11 @@
     <Content Include="App_Themes\Default\Images\Icons\Healthy24.png" />
     <Content Include="App_Themes\Default\Images\Icons\Healthy32.png" />
     <Content Include="App_Themes\Default\Images\Icons\pause32.png" />
+    <Content Include="App_Themes\Default\Images\Icons\pause32a.png" />
     <Content Include="App_Themes\Default\Images\Icons\start32.png" />
+    <Content Include="App_Themes\Default\Images\Icons\start32a.png" />
     <Content Include="App_Themes\Default\Images\Icons\stop32.png" />
+    <Content Include="App_Themes\Default\Images\Icons\stop32a.png" />
     <Content Include="App_Themes\Default\Images\Icons\TimeOut24.png" />
     <Content Include="App_Themes\Default\Images\Icons\TimeOut32.png" />
     <Content Include="App_Themes\Default\Images\tableheader.jpg" />

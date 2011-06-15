@@ -22,24 +22,6 @@ namespace IISProcessScheduler {
         protected global::System.Web.UI.WebControls.Label lblWarmupState;
         
         /// <summary>
-        /// lnkEnableWarmUp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkEnableWarmUp;
-        
-        /// <summary>
-        /// lnkPauseResume control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkPauseResume;
-        
-        /// <summary>
         /// dlHistory control.
         /// </summary>
         /// <remarks>
@@ -47,23 +29,5 @@ namespace IISProcessScheduler {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataList dlHistory;
-        
-        /// <summary>
-        /// lblHistory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHistory;
-        
-        /// <summary>
-        /// lblRefresh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lblRefresh;
     }
 }

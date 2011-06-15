@@ -15,9 +15,13 @@ using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Web;
 using System.Web.Hosting;
 using IISProcessScheduler.Configuration;
+using IISProcessScheduler.Configuration.IIS;
 using IISProcessScheduler.Scheduling;
+using IISProcessScheduler.Shared.UserControls;
+using Microsoft.Web.Administration;
 
 namespace IISProcessScheduler
 {
@@ -29,6 +33,38 @@ namespace IISProcessScheduler
         private SchedulingItem _rssSchedulingItem;
 
         private static IISProcessBehavior _iisProcessBehavior;
+
+
+        public static ServiceController.EnumServiceState ServiceState
+        {
+            get
+            {
+                if (SchedulingService == null || !SchedulingService.IsRunning)
+                {
+                    return ServiceController.EnumServiceState.Stopped;
+                }
+                if (SchedulingService.IsPaused)
+                {
+                    return ServiceController.EnumServiceState.Paused;
+                }
+                if (SchedulingService.IsRunning)
+                {
+                    return ServiceController.EnumServiceState.Started;
+                }
+                return ServiceController.EnumServiceState.Stopped;
+            }
+        }
+
+        public PreWarmUp()
+        {
+            ServiceController.OnChangeServiceState += ServiceController_OnChangeServiceState;
+        }
+
+
+        ~PreWarmUp()
+        {
+            ServiceController.OnChangeServiceState -= ServiceController_OnChangeServiceState;
+        }
 
         public void Preload(string[] parameters)
         {
@@ -43,6 +79,22 @@ namespace IISProcessScheduler
                 SchedulingService.Submit<TouchUrl>(job,ScheduledTouchUrl);
             }
             Started = DateTime.Now;
+        }
+
+        void ServiceController_OnChangeServiceState(object sender, EventArgs e)
+        {
+            switch (((ServiceController)sender).ServiceState)
+            {
+                case ServiceController.EnumServiceState.Paused:
+                    SchedulingService.Pause();
+                    break;
+                case ServiceController.EnumServiceState.Stopped:
+                    SchedulingService.Stop();
+                    break;
+                case ServiceController.EnumServiceState.Started:
+                    SchedulingService.Resume();
+                    break;
+            }
         }
 
         private static void ScheduledTouchUrl(Job<TouchUrl> schedulingItem, TouchUrl touchUrl)
