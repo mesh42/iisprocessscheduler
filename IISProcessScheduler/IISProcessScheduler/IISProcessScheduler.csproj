@@ -79,6 +79,7 @@
     <Content Include="CallTests\CallTest.aspx" />
     <Content Include="CallTests\CallTest2.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="Shared\UserControls\LogoControl.ascx" />
     <Content Include="Shared\UserControls\ServiceController.ascx" />
     <Content Include="Shared\UserControls\ServiceStatusControl.ascx" />
     <Content Include="Web.config">
@@ -142,6 +143,13 @@
     </Compile>
     <Compile Include="Shared\Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Shared\UserControls\LogoControl.ascx.cs">
+      <DependentUpon>LogoControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Shared\UserControls\LogoControl.ascx.designer.cs">
+      <DependentUpon>LogoControl.ascx</DependentUpon>
     </Compile>
     <Compile Include="Shared\UserControls\ServiceController.ascx.cs">
       <DependentUpon>ServiceController.ascx</DependentUpon>
