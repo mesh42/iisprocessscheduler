@@ -1,0 +1,2 @@
+﻿<%@ Control EnableTheming="true" EnableViewState="false" Language="C#" AutoEventWireup="true" CodeBehind="LogoControl.ascx.cs" Inherits="IISProcessScheduler.Shared.UserControls.LogoControl" %>
+<asp:Image ID="imageLogo" runat="server" EnableViewState="false" />

@@ -2,4 +2,4 @@
 <asp:ImageButton ID="imagePlay" runat="server" onclick="imagePlay_Click" EnableViewState="false" />
 <asp:ImageButton ID="imagePause" runat="server" onclick="imagePause_Click" EnableViewState="false" />
 <asp:ImageButton ID="imageStop" runat="server" onclick="imageStop_Click" EnableViewState="false" />
-<asp:ImageButton ID="imageRefresh" runat="server" />
+<asp:ImageButton ID="imageRefresh" runat="server" EnableViewState="false" />

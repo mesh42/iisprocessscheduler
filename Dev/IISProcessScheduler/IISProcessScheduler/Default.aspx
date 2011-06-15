@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="IISProcessScheduler.Default" %>
+﻿<%@ Page EnableViewState="false" Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="IISProcessScheduler.Default" %>
 <%@ Register src="Shared/UserControls/ServiceController.ascx" tagname="ServiceController" tagprefix="uc1" %>
 <%@ Register src="Shared/UserControls/ServiceStatusControl.ascx" tagname="ServiceStatusControl" tagprefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
