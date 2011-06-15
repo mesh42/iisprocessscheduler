@@ -72,6 +72,13 @@ namespace IISProcessScheduler
 
         }
 
+        [System.Web.Services.WebMethod]
+        [System.Web.Script.Services.ScriptMethod]
+        public static string GetHtml(string contextKey)
+        {
+            return DateTime.Now.ToString();
+
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {

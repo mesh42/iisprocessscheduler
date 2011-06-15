@@ -1,4 +1,5 @@
 ﻿<%@ Page EnableViewState="false" Language="C#" MasterPageFile="~/Shared/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="IISProcessScheduler.Default" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register src="Shared/UserControls/ServiceController.ascx" tagname="ServiceController" tagprefix="uc1" %>
 <%@ Register src="Shared/UserControls/ServiceStatusControl.ascx" tagname="ServiceStatusControl" tagprefix="uc2" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -26,4 +27,21 @@
         </asp:DataList>
         <br />
     </div>
+        <script  type="text/javascript">
+            function updateDateKey(value) {
+                var behavior = $find('dp1');
+                if (behavior) {
+                    behavior.populate(value);
+                }
+            }
+            Sys.Application.add_load(function () { updateDateKey('G'); });
+    </script>
+
+            <ajaxToolkit:DynamicPopulateExtender ID="dp" BehaviorID="dp1" runat="server"
+            TargetControlID="Panel1"
+            ClearContentsDuringUpdate="true"
+            ServiceMethod="GetHtml"
+            UpdatingCssClass="dynamicPopulate_Updating" />
+            <asp:Panel ID="Panel1" runat="server">hithr</asp:Panel>
+
 </asp:Content>
