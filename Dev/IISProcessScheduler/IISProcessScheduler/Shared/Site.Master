@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="IISProcessScheduler.Shared.Site" %>
+<%@ Register TagPrefix="uc1" TagName="ServiceController" Src="~/Shared/UserControls/ServiceController.ascx" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -11,7 +12,8 @@
     <form id="form1" runat="server">
     <div id="doc2" class="yui-t7">
         <div id="hd">
-            <img src="App_Themes/Default/Images/top.jpg" />
+            <img src="App_Themes/Default/Images/topsmall.jpg" />
+            <div id="login">
             <asp:LoginView ID="LoginView1" runat="server">
                 <AnonymousTemplate>
                     Anonymous
@@ -20,6 +22,9 @@
                     Welcome: <asp:LoginName ID="LoginName1" runat="server" />
                 </LoggedInTemplate>
             </asp:LoginView>
+            <br />
+            <uc1:ServiceController ID="ServiceController1" runat="server" />
+            </div>
         </div>
         <div id="bd">
             <div id="yui-main">

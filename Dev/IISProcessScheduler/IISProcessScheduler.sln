@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "IISProcessScheduler.Setup", "IISProcessScheduler.Setup\IISProcessScheduler.Setup.vdproj", "{413739AE-0E41-4629-B796-7B06CAA56FA1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Artwork", "Artwork", "{537FF8ED-C934-415A-8F1F-3CBF3C77BAB8}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 4
@@ -71,5 +73,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{537FF8ED-C934-415A-8F1F-3CBF3C77BAB8} = {958E3BF3-AB5D-4F64-B1C9-0A9A459A1C41}
 	EndGlobalSection
 EndGlobal

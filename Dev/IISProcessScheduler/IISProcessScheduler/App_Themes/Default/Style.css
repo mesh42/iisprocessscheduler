@@ -94,12 +94,21 @@ p,fieldset,table,pre {
 }
 /* setting a consistent width, 160px; 
    control of type=file still not possible */
-input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em;}
+input[type=text],input[type=password],textarea{width:12.25em;width:11.9em;}
 
 #hd 
 {
-    background-image : url('Images/topback.jpg');
+    background-image : url('Images/topbacksmall.jpg');
 }
+
+#hd #login {
+    display:block;
+    position:absolute;
+    top:0;
+    right:0;
+    /*width:350px;/*
+}
+
 
 #bd
 {
