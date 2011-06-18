@@ -62,23 +62,33 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Themes\Default\Images\Icons\Error24.png" />
-    <Content Include="App_Themes\Default\Images\Icons\Error32.png" />
     <Content Include="App_Themes\Default\Images\Icons\Healthy24.png" />
-    <Content Include="App_Themes\Default\Images\Icons\Healthy32.png" />
+    <Content Include="App_Themes\Default\Images\Icons\TimeOut24.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\Error24.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\Healthy24.png" />
     <Content Include="App_Themes\Default\Images\Icons\pause32.png" />
     <Content Include="App_Themes\Default\Images\Icons\pause32a.png" />
     <Content Include="App_Themes\Default\Images\Icons\start32.png" />
     <Content Include="App_Themes\Default\Images\Icons\start32a.png" />
     <Content Include="App_Themes\Default\Images\Icons\stop32.png" />
     <Content Include="App_Themes\Default\Images\Icons\stop32a.png" />
-    <Content Include="App_Themes\Default\Images\Icons\TimeOut24.png" />
-    <Content Include="App_Themes\Default\Images\Icons\TimeOut32.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\TimeOut24.png" />
     <Content Include="App_Themes\Default\Images\tableheader.jpg" />
     <Content Include="App_Themes\Default\Images\top.jpg" />
     <Content Include="App_Themes\Default\Images\topback.jpg" />
     <Content Include="App_Themes\Default\Images\topbacksmall.jpg" />
     <Content Include="App_Themes\Default\Images\topsmall.jpg" />
     <Content Include="App_Themes\Default\Style.css" />
+    <Content Include="App_Themes\NightVision\Images\Icons\pause32.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\pause32a.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\start32.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\start32a.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\stop32.png" />
+    <Content Include="App_Themes\NightVision\Images\Icons\stop32a.png" />
+    <Content Include="App_Themes\NightVision\Images\tableheader.jpg" />
+    <Content Include="App_Themes\NightVision\Images\topbacksmall.jpg" />
+    <Content Include="App_Themes\NightVision\Images\topsmall.jpg" />
+    <Content Include="App_Themes\NightVision\Style.css" />
     <Content Include="CallTests\CallTest.aspx" />
     <Content Include="CallTests\CallTest2.aspx" />
     <Content Include="Default.aspx" />
@@ -178,7 +188,9 @@
   <ItemGroup>
     <Content Include="App_Themes\Default\Default.skin" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_Themes\NightVision\Default.skin" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

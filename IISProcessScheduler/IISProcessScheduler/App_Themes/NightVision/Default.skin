@@ -1,0 +1,26 @@
+﻿<%@ Register TagPrefix="iisproc" TagName="ServiceController" Src="~/Shared/UserControls/ServiceController.ascx" %>
+<%@ Register TagPrefix="iisproc" TagName="LogoControl" Src="~/Shared/UserControls/LogoControl.ascx" %>
+<%@ Register src="~/Shared/UserControls/ServiceStatusControl.ascx" tagname="ServiceStatusControl" tagprefix="iisproc" %>
+
+<iisproc:ServiceController 
+    StartImage="~/App_Themes/NightVision/Images/Icons/start32.png"
+    StopImage="~/App_Themes/NightVision/Images/Icons/stop32.png"
+    PauseImage="~/App_Themes/NightVision/Images/Icons/pause32.png" 
+    StartImageDisabled="~/App_Themes/NightVision/Images/Icons/start32a.png"
+    StopImageDisabled="~/App_Themes/NightVision/Images/Icons/stop32a.png"
+    PauseImageDisabled="~/App_Themes/NightVision/Images/Icons/pause32a.png"
+    RefreshImage="~/App_Themes/NightVision/Images/Icons/refresh32.png"
+    runat="server" />
+<iisproc:LogoControl LogoImage="~/App_Themes/NightVision/Images/topsmall.jpg" runat="server" />
+
+ <asp:DataList Width="930px" SkinId="ProcessList" runat="server">
+            <AlternatingItemStyle  />
+            <FooterStyle  />
+            <HeaderStyle CssClass="ProcessListHeader" />
+            <ItemStyle BackColor="#07070E" />
+            <SelectedItemStyle BackColor="#3E1D1A" Font-Bold="True" ForeColor="White" />
+        </asp:DataList>
+<iisproc:ServiceStatusControl  runat="server"
+ImageError="~/App_Themes/NightVision/Images/Icons/Error24.png" 
+ImageTimeout="~/App_Themes/NightVision/Images/Icons/TimeOut24.png" 
+ImageHealthy="~/App_Themes/NightVision/Images/Icons/Healthy24.png" />
