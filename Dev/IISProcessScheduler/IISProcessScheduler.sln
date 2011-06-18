@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISProcessScheduler.Tests",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{958E3BF3-AB5D-4F64-B1C9-0A9A459A1C41}"
 	ProjectSection(SolutionItems) = preProject
+		Dependencies\AjaxControlToolkit.dll = Dependencies\AjaxControlToolkit.dll
 		Dependencies\Microsoft.Web.Administration.dll = Dependencies\Microsoft.Web.Administration.dll
 		Dependencies\nunit.framework.dll = Dependencies\nunit.framework.dll
 	EndProjectSection

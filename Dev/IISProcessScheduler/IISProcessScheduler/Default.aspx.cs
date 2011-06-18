@@ -69,7 +69,6 @@ namespace IISProcessScheduler
 
             public DateTime Date { get; set; }
 
-
         }
 
         [System.Web.Services.WebMethod]

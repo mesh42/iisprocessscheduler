@@ -1,9 +1,16 @@
 ﻿using System;
+using System.Web.UI;
 
 namespace IISProcessScheduler.Shared.UserControls
 {
+    [Themeable(true)]
     public partial class ServiceStatusControl : System.Web.UI.UserControl
     {
+        public string ImageError { get; set; }
+        public string ImageTimeout { get; set; }
+        public string ImageHealthy { get; set; }
+
+
         public Default.IProcessInfo ProcessInfo
         {
             set
@@ -11,13 +18,13 @@ namespace IISProcessScheduler.Shared.UserControls
                 switch (value.Result)
                 {
                     case Default.EnumProcessResult.Error:
-                        Image1.ImageUrl = "~/App_Themes/Default/Images/Icons/Error24.png";
+                        Image1.ImageUrl = ImageError;
                         break;
                     case Default.EnumProcessResult.Timeout:
-                        Image1.ImageUrl = "~/App_Themes/Default/Images/Icons/TimeOut24.png";
+                        Image1.ImageUrl = ImageTimeout;
                         break;
                     case Default.EnumProcessResult.Healthy:
-                        Image1.ImageUrl = "~/App_Themes/Default/Images/Icons/Healthy24.png";
+                        Image1.ImageUrl = ImageHealthy;
                         break;
 
                 }
